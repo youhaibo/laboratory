@@ -5,7 +5,7 @@
 
 	<groupId>me.hbyou.application</groupId>
 	<artifactId>laboratory</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>laboratory</name>
@@ -26,6 +26,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -45,6 +51,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
