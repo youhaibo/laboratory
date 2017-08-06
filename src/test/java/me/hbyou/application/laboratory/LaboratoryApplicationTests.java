@@ -12,5 +12,4 @@ public class LaboratoryApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

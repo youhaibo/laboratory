@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -99,7 +100,27 @@ public class HttpUtils {
             HttpEntity responseEntity = response.getEntity();
 
             if (responseEntity != null) {
-                responseContent = EntityUtils.toString(responseEntity);
+                responseContent = EntityUtils.toString(responseEntity, "gb2312");
+
+                EntityUtils.consume(responseEntity);
+            }
+            return responseContent;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return responseContent;
+    }
+
+    public static String get(String url) {
+        CloseableHttpClient httpclient = HttpClientFactory.getHttpClient();
+        HttpGet hhtpGet = new HttpGet(url);
+        String responseContent = "";
+        try (CloseableHttpResponse response = httpclient.execute(hhtpGet)) {
+            int statuCode = response.getStatusLine().getStatusCode();
+            HttpEntity responseEntity = response.getEntity();
+
+            if (responseEntity != null) {
+                responseContent = EntityUtils.toString(responseEntity, "gb2312");
 
                 EntityUtils.consume(responseEntity);
             }
